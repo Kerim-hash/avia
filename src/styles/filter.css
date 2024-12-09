@@ -1,0 +1,76 @@
+.filters-container {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.filters-container h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.filters-container label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #555;
+}
+
+.filters-container input[type='checkbox'],
+.filters-container select {
+  margin-right: 10px;
+}
+
+.currency-selector {
+  margin-top: 20px;
+}
+
+.currency-selector h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.currency-options {
+  display: flex;
+}
+.currency-button:nth-child(1) {
+  border-radius: 8px 0 0 8px;
+}
+.currency-button:nth-child(3) {
+  border-radius: 0 8px 8px 0;
+}
+.currency-button:nth-child(2) {
+  border-radius: 0;
+}
+.currency-button {
+  padding: 10px 15px;
+  border: 1px solid #d3dbe0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.currency-button.active {
+  background-color: #1e90ff;
+  color: #ffffff;
+  border-color: #1e90ff;
+  font-weight: bold;
+}
+
+.currency-button:hover {
+  background-color: #e6f0ff;
+  border-color: #74bef7;
+  color: #74bef7;
+}
