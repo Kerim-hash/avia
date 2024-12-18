@@ -1,9 +1,13 @@
 import React from 'react'
 import '../styles/filter.css'
+
 const Filters = ({ stopsFilter, setStopsFilter, currency, setCurrency }) => {
+  const stopOptions = [0, 1, 2, 3]
+
   const handleCurrencyChange = (value) => {
     setCurrency(value)
   }
+
   const handleFilterChange = (stopCount) => {
     if (stopsFilter.includes(stopCount)) {
       setStopsFilter(stopsFilter.filter((count) => count !== stopCount))
@@ -12,8 +16,20 @@ const Filters = ({ stopsFilter, setStopsFilter, currency, setCurrency }) => {
     }
   }
 
+  const handleSelectAll = () => {
+    if (stopsFilter.length === stopOptions.length) {
+      setStopsFilter([]) // Сбросить все фильтры
+    } else {
+      setStopsFilter(stopOptions) // Выбрать все фильтры
+    }
+  }
+
+  const handleSelectOnly = (stopCount) => {
+    setStopsFilter([stopCount]) // Выбрать только один фильтр
+  }
+
   return (
-    <div class="filters-container">
+    <div className="filters-container">
       <div className="currency-selector">
         <h4>Валюта</h4>
         <div className="currency-options">
@@ -37,39 +53,45 @@ const Filters = ({ stopsFilter, setStopsFilter, currency, setCurrency }) => {
           </button>
         </div>
       </div>
+
       <h4>Количество пересадок</h4>
       <label>
         <input
           type="checkbox"
-          onChange={() => handleFilterChange(0)}
-          checked={stopsFilter.includes(0)}
+          onChange={handleSelectAll}
+          checked={stopsFilter.length === stopOptions.length}
         />
-        Без пересадок
+        Все
       </label>
-      <label>
-        <input
-          type="checkbox"
-          onChange={() => handleFilterChange(1)}
-          checked={stopsFilter.includes(1)}
-        />
-        1 пересадка
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          onChange={() => handleFilterChange(2)}
-          checked={stopsFilter.includes(2)}
-        />
-        2 пересадки
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          onChange={() => handleFilterChange(3)}
-          checked={stopsFilter.includes(3)}
-        />
-        3 пересадки
-      </label>
+      {stopOptions.map((stopCount) => (
+        <div
+          key={stopCount}
+          className="filter-option"
+          onMouseEnter={(e) => {
+            const onlyButton = e.currentTarget.querySelector('.only-button')
+            onlyButton.style.display = 'inline-block'
+          }}
+          onMouseLeave={(e) => {
+            const onlyButton = e.currentTarget.querySelector('.only-button')
+            onlyButton.style.display = 'none'
+          }}
+        >
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => handleFilterChange(stopCount)}
+              checked={stopsFilter.includes(stopCount)}
+            />
+            {stopCount === 0 ? 'Без пересадок' : `${stopCount} пересадка(и)`}
+          </label>
+          <button
+            className="only-button"
+            onClick={() => handleSelectOnly(stopCount)}
+          >
+            Только
+          </button>
+        </div>
+      ))}
     </div>
   )
 }

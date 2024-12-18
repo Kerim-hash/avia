@@ -18,7 +18,6 @@
 .filters-container label {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
   cursor: pointer;
   font-size: 14px;
   color: #555;
@@ -73,4 +72,35 @@
   background-color: #e6f0ff;
   border-color: #74bef7;
   color: #74bef7;
+}
+
+
+.filters-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0 -15px;
+  transition: all 0.4s;
+  padding: 10px 15px;
+}
+.filter-option:hover{
+  background-color: #f1fcff;
+}
+
+.only-button {
+  display: none;
+  margin-left: 10px;
+  color: #007bff;
+  border: none;
+  border-radius: 4px;
+  padding: 2px 8px;
+  cursor: pointer;
+  font-size: 14px;
+  background: transparent;
 }
